@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.carprojectfr.CarViewController"
+            prefHeight="700" prefWidth="1000">
+    <BorderPane xmlns:fx="http://javafx.com/fxml">
+        <!-- Menu Bar -->
+        <top>
+            <MenuBar>
+                <Menu text="Plik">
+                    <MenuItem text="Nowy" />
+                    <MenuItem text="Otwórz" />
+                    <MenuItem text="Zamknij" />
+                </Menu>
+                <Menu text="Edycja">
+                    <MenuItem text="Kopiuj" />
+                    <MenuItem text="Wklej" />
+                </Menu>
+            </MenuBar>
+        </top>
+
+        <!-- Samochód Panel -->
+        <left>
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <TitledPane text="Samochód" expanded="true">
+                    <VBox spacing="5" style="-fx-padding: 10;">
+                        <Label text="Model" />
+                        <TextField fx:id="modelField" />
+                        <Label text="Nr rejestracyjny" />
+                        <TextField fx:id="registrationField" />
+                        <Label text="Waga" />
+                        <TextField fx:id="weightField" />
+                        <Label text="Prędkość" />
+                        <TextField fx:id="speedField" />
+                        <HBox spacing="5">
+                            <Button text="Włącz" />
+                            <Button text="Wyłącz" />
+                            <Button text="Button" />
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Skrzynia Biegów" expanded="true">
+                    <VBox spacing="5" style="-fx-padding: 10;">
+                        <Label text="Nazwa" />
+                        <TextField fx:id="gearboxNameField" />
+                        <Label text="Cena" />
+                        <TextField fx:id="gearboxPriceField" />
+                        <Label text="Waga" />
+                        <TextField fx:id="gearboxWeightField" />
+                        <Label text="Bieg" />
+                        <TextField fx:id="gearboxGearField" />
+                        <HBox spacing="5">
+                            <Button text="Zwiększ bieg" />
+                            <Button text="Zmniejsz bieg" />
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Silnik" expanded="true">
+                    <VBox spacing="5" style="-fx-padding: 10;">
+                        <Label text="Nazwa" />
+                        <TextField fx:id="engineNameField" />
+                        <Label text="Cena" />
+                        <TextField fx:id="enginePriceField" />
+                        <Label text="Waga" />
+                        <TextField fx:id="engineWeightField" />
+                        <Label text="Obroty" />
+                        <TextField fx:id="engineRpmField" />
+                        <HBox spacing="5">
+                            <Button text="Dodaj gazu" />
+                            <Button text="Ujmij gazu" />
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+
+                <TitledPane text="Sprzęgło" expanded="true">
+                    <VBox spacing="5" style="-fx-padding: 10;">
+                        <Label text="Nazwa" />
+                        <TextField fx:id="clutchNameField" />
+                        <Label text="Cena" />
+                        <TextField fx:id="clutchPriceField" />
+                        <Label text="Waga" />
+                        <TextField fx:id="clutchWeightField" />
+                        <Label text="Stan" />
+                        <TextField fx:id="clutchConditionField" />
+                        <HBox spacing="5">
+                            <Button text="Naciśnij" />
+                            <Button text="Zwolnij" />
+                        </HBox>
+                    </VBox>
+                </TitledPane>
+            </VBox>
+        </left>
+
+        <!-- Mapa i opcje -->
+        <center>
+            <VBox spacing="10" style="-fx-background-color: #90EE90; -fx-padding: 10;">
+                <Label text="Mapa" />
+
+                <Label text="Car" />
+            </VBox>
+        </center>
+
+        <!-- Opcje górne -->
+        <right>
+            <VBox spacing="10" style="-fx-padding: 10;">
+                <Label text="Samochód:" />
+                <ComboBox fx:id="carComboBox" />
+                <HBox spacing="5">
+                    <Button text="Dodaj nowy" />
+                    <Button text="Usuń" />
+                </HBox>
+            </VBox>
+        </right>
+    </BorderPane>
+</AnchorPane>
