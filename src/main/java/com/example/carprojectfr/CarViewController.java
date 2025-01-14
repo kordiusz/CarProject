@@ -38,14 +38,14 @@ public class CarViewController
     public TextField clutchWeightField;
     public TextField clutchConditionField;
 
-    private static final ArrayList<Car> cars = new ArrayList<>();
+    private static ObservableList<Car> cars = FXCollections.observableArrayList();
     public ComboBox carComboBox;
     public Button add_car_btn;
 
     @FXML
     public void initialize(){
 
-        carComboBox.setItems(FXCollections.observableArrayList(cars));
+        carComboBox.setItems(cars);
 
         add_car_btn.setOnAction(event->{
             try {
@@ -58,7 +58,7 @@ public class CarViewController
     }
 
     public void refresh(){
-        carComboBox.setItems(FXCollections.observableArrayList(cars));
+        //carComboBox.setItems(FXCollections.observableArrayList(cars));
     }
 
     public static void addCar(Car c){

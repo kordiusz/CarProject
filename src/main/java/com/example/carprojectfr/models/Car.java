@@ -55,5 +55,10 @@ public class Car {
     public void setClutch(Clutch clutch) {
         this.clutch = clutch;
     }
+
+    @Override
+    public String toString() {
+        return model;
+    }
 }
 
