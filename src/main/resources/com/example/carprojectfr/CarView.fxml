@@ -117,7 +117,7 @@
                 <Label text="Samochód:" />
                 <ComboBox fx:id="carComboBox" />
                 <HBox spacing="5">
-                    <Button text="Dodaj nowy" />
+                    <Button text="Dodaj nowy" fx:id="add_car_btn" />
                     <Button text="Usuń" />
                 </HBox>
             </VBox>

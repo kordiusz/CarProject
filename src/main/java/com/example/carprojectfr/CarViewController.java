@@ -1,9 +1,13 @@
 package com.example.carprojectfr;
 
 import com.example.carprojectfr.models.Car;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,10 +39,26 @@ public class CarViewController
     public TextField clutchConditionField;
 
     private static final ArrayList<Car> cars = new ArrayList<>();
+    public ComboBox carComboBox;
+    public Button add_car_btn;
 
     @FXML
     public void initialize(){
 
+        carComboBox.setItems(FXCollections.observableArrayList(cars));
+
+        add_car_btn.setOnAction(event->{
+            try {
+                openAddCarWindow();
+                refresh();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    public void refresh(){
+        carComboBox.setItems(FXCollections.observableArrayList(cars));
     }
 
     public static void addCar(Car c){
@@ -52,6 +72,7 @@ public class CarViewController
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Dodaj nowy samochód");
         stage.show();
+
     }
 
     public void getComponentsDataFromView(){
