@@ -39,20 +39,22 @@ public class AddNewCarPopupController {
 
         add_btn.setOnAction(event->{
 
-
             String model = model_field.getText();
             String registration = registration_field.getText();
             double weight = Double.parseDouble( weight_field.getText());
             double speed = Double.parseDouble( max_speed_field.getText());
             Car newModel = new Car(model,registration,weight,speed);
 
-            Gearbox gearbox = (Gearbox) gearbox_listview.getValue();
-            Engine engine = (Engine) gearbox_listview.getValue();
+            Gearbox gearbox =  (Gearbox)gearbox_listview.getValue();
+            Engine engine = (Engine) engine_listview.getValue();
 
             newModel.setEngine(engine);
             newModel.setGearbox(gearbox);
 
             CarViewController.addCar(newModel);
+
+            Stage stage = (Stage)cancel_btn.getScene().getWindow();
+            stage.close();
         });
 
     }
