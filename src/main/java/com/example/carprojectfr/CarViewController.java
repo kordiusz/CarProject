@@ -3,6 +3,8 @@ package com.example.carprojectfr;
 import com.example.carprojectfr.models.Car;
 import javafx.scene.control.TextField;
 
+import java.util.ArrayList;
+
 public class CarViewController
 {
 
@@ -27,7 +29,11 @@ public class CarViewController
     public TextField clutchWeightField;
     public TextField clutchConditionField;
 
-    public Car model;
+    private static final ArrayList<Car> cars = new ArrayList<>();
+
+    public static void addCar(Car c){
+        cars.add(c);
+    }
 
     public void getComponentsDataFromView(){
 
