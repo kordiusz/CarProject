@@ -1,8 +1,6 @@
 package com.example.carprojectfr;
 
-import com.example.carprojectfr.models.Car;
-import com.example.carprojectfr.models.Engine;
-import com.example.carprojectfr.models.Gearbox;
+import com.example.carprojectfr.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -43,10 +41,18 @@ public class CarViewController
     private static ObservableList<Car> cars = FXCollections.observableArrayList();
     public ComboBox carComboBox;
     public Button add_car_btn;
+    public Button remove_car_btn;
 
     @FXML
     public void initialize(){
 
+
+        //FOR TESTING PURPOSE ONLY:
+        Car example = new Car("Auto mamy", "KR 2956JW", 2000, 150);
+        example.setClutch(PredefinedComponents.getInstance().getClutches().getFirst());
+        example.setEngine(PredefinedComponents.getInstance().getEngines().getFirst());
+        example.setGearbox(PredefinedComponents.getInstance().getGearboxes().getFirst());
+        cars.add(example);
         carComboBox.setItems(cars);
 
         carComboBox.setOnAction(event->{
@@ -55,20 +61,28 @@ public class CarViewController
         add_car_btn.setOnAction(event->{
             try {
                 openAddCarWindow();
-                refresh();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+
+        remove_car_btn.setOnAction(event->{
+            carComboBox.getItems().remove((Car)carComboBox.getValue());
+        });
     }
 
     public void refresh(){
-        Car c = (Car)carComboBox.getValue();
 
+        Car c = (Car)carComboBox.getValue();
+        if(c == null) {
+            restore_empty();
+            return;
+        }
         modelField.setText(c.getModel());
         registrationField.setText(c.getRegistrationNumber());
         weightField.setText(String.valueOf(c.getWeight()));
         speedField.setText(String.valueOf(c.getSpeed()));
+
 
         Gearbox g = c.getGearbox();
         gearboxNameField.setText(g.getName());
@@ -82,6 +96,35 @@ public class CarViewController
         engineRpmField.setText(String.valueOf( e.getRpm()));
         engineWeightField.setText(String.valueOf(e.getWeight()));
 
+        Clutch clutch = c.getClutch();
+        clutchNameField.setText(clutch.getName());
+        clutchConditionField.setText(clutch.getCondition());
+        clutchPriceField.setText(String.valueOf(clutch.getPrice()));
+        clutchWeightField.setText(String.valueOf(clutch.getWeight()));
+
+
+    }
+
+    private void restore_empty(){
+        modelField.setText("");
+        registrationField.setText("");
+        weightField.setText("");
+        speedField.setText("");
+
+
+        gearboxNameField.setText("");
+        gearboxPriceField.setText("");
+        gearboxWeightField.setText("");
+        gearboxGearField.setText("");
+
+        engineNameField.setText("");
+        enginePriceField.setText("");
+        engineRpmField.setText("");
+        engineWeightField.setText("");
+        clutchNameField.setText("");
+        clutchConditionField.setText("");
+        clutchPriceField.setText("");
+        clutchWeightField.setText("");
     }
 
     public static void addCar(Car c){
