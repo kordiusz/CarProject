@@ -1,6 +1,7 @@
 package com.example.carprojectfr;
 
 import com.example.carprojectfr.models.Car;
+import com.example.carprojectfr.models.Gearbox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,6 +48,9 @@ public class CarViewController
 
         carComboBox.setItems(cars);
 
+        carComboBox.setOnAction(event->{
+            refresh();
+        });
         add_car_btn.setOnAction(event->{
             try {
                 openAddCarWindow();
@@ -58,7 +62,15 @@ public class CarViewController
     }
 
     public void refresh(){
-        //carComboBox.setItems(FXCollections.observableArrayList(cars));
+        Car c = (Car)carComboBox.getValue();
+
+        modelField.setText(c.getModel());
+        registrationField.setText(c.getRegistrationNumber());
+        weightField.setText(String.valueOf(c.getWeight()));
+        speedField.setText(String.valueOf(c.getSpeed()));
+
+        Gearbox g = c.getGearbox();
+
     }
 
     public static void addCar(Car c){
