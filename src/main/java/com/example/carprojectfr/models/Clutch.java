@@ -45,6 +45,9 @@ public class Clutch {
         this.condition = condition;
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }
 

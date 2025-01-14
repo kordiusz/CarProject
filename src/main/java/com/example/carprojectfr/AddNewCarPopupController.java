@@ -1,9 +1,6 @@
 package com.example.carprojectfr;
 
-import com.example.carprojectfr.models.Car;
-import com.example.carprojectfr.models.Engine;
-import com.example.carprojectfr.models.Gearbox;
-import com.example.carprojectfr.models.PredefinedComponents;
+import com.example.carprojectfr.models.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +18,7 @@ public class AddNewCarPopupController {
     public TextField registration_field;
     public TextField weight_field;
     public TextField max_speed_field;
+    public ComboBox clutch_listview;
 
 
     @FXML
@@ -28,9 +26,11 @@ public class AddNewCarPopupController {
 
         ObservableList<Gearbox> gearboxes = FXCollections.observableArrayList(PredefinedComponents.getInstance().getGearboxes());
         ObservableList<Engine> engines = FXCollections.observableArrayList(PredefinedComponents.getInstance().getEngines());
+        ObservableList<Clutch> clutches = FXCollections.observableArrayList(PredefinedComponents.getInstance().getClutches());
 
         gearbox_listview.setItems(gearboxes);
         engine_listview.setItems(engines);
+        clutch_listview.setItems(clutches);
 
         cancel_btn.setOnAction(actionEvent -> {
             Stage stage = (Stage)cancel_btn.getScene().getWindow();
@@ -47,10 +47,11 @@ public class AddNewCarPopupController {
 
             Gearbox gearbox =  (Gearbox)gearbox_listview.getValue();
             Engine engine = (Engine) engine_listview.getValue();
+            Clutch clutch = (Clutch) clutch_listview.getValue();
 
             newModel.setEngine(engine);
             newModel.setGearbox(gearbox);
-
+            newModel.setClutch(clutch);
             CarViewController.addCar(newModel);
 
             Stage stage = (Stage)cancel_btn.getScene().getWindow();
