@@ -45,5 +45,8 @@ public class Engine {
         this.rpm = rpm;
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }

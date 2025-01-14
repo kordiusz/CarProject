@@ -45,6 +45,9 @@ public class Gearbox {
         this.gear = gear;
     }
 
-
+    @Override
+    public String toString() {
+        return name;
+    }
 }
 
