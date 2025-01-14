@@ -9,7 +9,7 @@
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.carprojectfr.AddNewCarPopupController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0" spacing="5">
 
     <Label text="Dodaj nowy samochod" style="-fx-font-size: 30"/>
     <Label text="Model"/>
@@ -21,6 +21,10 @@
     <Label text="Maksymalna predkosc: "/>
     <TextField fx:id="max_speed_field"/>
 
+    <Label text="Silnik"/>
+    <ComboBox fx:id="engine_listview"/>
+    <Label text="Skrzynia biegow"/>
+    <ComboBox fx:id="gearbox_listview"/>
     <HBox>
         <Button text="Dodaj" fx:id="add_btn"/>
         <Button text="Anuluj" fx:id="cancel_btn"/>
