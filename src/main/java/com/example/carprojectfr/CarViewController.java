@@ -1,6 +1,7 @@
 package com.example.carprojectfr;
 
 import com.example.carprojectfr.models.Car;
+import com.example.carprojectfr.models.Engine;
 import com.example.carprojectfr.models.Gearbox;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,6 +71,16 @@ public class CarViewController
         speedField.setText(String.valueOf(c.getSpeed()));
 
         Gearbox g = c.getGearbox();
+        gearboxNameField.setText(g.getName());
+        gearboxPriceField.setText(String.valueOf(g.getPrice()));
+        gearboxWeightField.setText(String.valueOf(g.getWeight()));
+        gearboxGearField.setText(String.valueOf(g.getGear()));
+
+        Engine e = c.getEngine();
+        engineNameField.setText(e.getName());
+        enginePriceField.setText(String.valueOf(e.getPrice()));
+        engineRpmField.setText(String.valueOf( e.getRpm()));
+        engineWeightField.setText(String.valueOf(e.getWeight()));
 
     }
 

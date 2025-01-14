@@ -43,4 +43,13 @@ public class PredefinedComponents {
         return  gearboxes;
     }
 
+    public ArrayList<Clutch> getClutches(){
+        ArrayList<Clutch> clutches = new ArrayList<>();
+        clutches.add(new Clutch("Exedy Stage 1", 350.0, 5.2, "New"));
+        clutches.add(new Clutch("ACT Heavy Duty", 450.0, 6.0, "New"));
+        clutches.add(new Clutch("LuK OEM Replacement", 200.0, 4.8, "New"));
+        clutches.add(new Clutch("Centerforce Dual Friction", 500.0, 5.6, "New"));
+        return  clutches;
+    }
+
 }
