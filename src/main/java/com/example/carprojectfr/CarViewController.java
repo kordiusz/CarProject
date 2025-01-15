@@ -5,10 +5,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,6 +49,7 @@ public class CarViewController
     public ComboBox carComboBox;
     public Button add_car_btn;
     public Button remove_car_btn;
+    public BorderPane car_playground;
 
     @FXML
     public void initialize(){
@@ -53,6 +61,7 @@ public class CarViewController
         example.setEngine(PredefinedComponents.getInstance().getEngines().getFirst());
         example.setGearbox(PredefinedComponents.getInstance().getGearboxes().getFirst());
         cars.add(example);
+        addCarIcon(example);
         carComboBox.setItems(cars);
 
         carComboBox.setOnAction(event->{
@@ -68,6 +77,14 @@ public class CarViewController
 
         remove_car_btn.setOnAction(event->{
             carComboBox.getItems().remove((Car)carComboBox.getValue());
+        });
+
+        car_playground.setOnMouseClicked(event->{
+            double x = event.getX();
+            double y = event.getY();
+
+            Car selected = (Car) carComboBox.getValue();
+            selected.driveTo(new Point2D(x,y));
         });
     }
 
@@ -131,6 +148,25 @@ public class CarViewController
         cars.add(c);
     }
 
+    void addCarIcon(Car c){
+
+
+        VBox car_box = new VBox();
+        car_box.setAlignment(Pos.CENTER);
+        Label label = new Label(c.getModel());
+        label.setStyle("-fx-font-size: 100;");
+        Image image = new Image(getClass().getResource("/car.png").toExternalForm());
+        ImageView img = new ImageView(image);
+        img.setScaleX(0.1);
+        img.setScaleY(0.1);
+        car_box.getChildren().addAll(label, img);
+        car_playground.getChildren().add(car_box);
+
+        car_box.setTranslateX(100);
+        car_box.setTranslateY(100);
+
+    }
+
     public void openAddCarWindow() throws IOException {
         FXMLLoader loader = new
                 FXMLLoader(getClass().getResource("AddNewCarPopup.fxml"));
@@ -141,9 +177,4 @@ public class CarViewController
 
     }
 
-    public void getComponentsDataFromView(){
-
-
-
-    }
 }

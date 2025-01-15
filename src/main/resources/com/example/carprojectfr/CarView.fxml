@@ -104,11 +104,11 @@
 
         <!-- Mapa i opcje -->
         <center>
-            <VBox spacing="10" style="-fx-background-color: #90EE90; -fx-padding: 10;" prefWidth="500">
+            <BorderPane style="-fx-background-color: #90EE90; -fx-padding: 10;" prefWidth="500" fx:id="car_playground">
                 <Label text="Mapa" />
 
                 <Label text="Car" />
-            </VBox>
+            </BorderPane>
         </center>
 
         <!-- Opcje górne -->

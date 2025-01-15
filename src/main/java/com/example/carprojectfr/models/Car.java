@@ -1,5 +1,7 @@
 package com.example.carprojectfr.models;
 
+import javafx.geometry.Point2D;
+
 public class Car {
     private String model;
     private String registrationNumber;
@@ -59,6 +61,11 @@ public class Car {
     @Override
     public String toString() {
         return model;
+    }
+
+
+    public void driveTo(Point2D destination) {
+
     }
 }
 
