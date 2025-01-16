@@ -26,7 +26,7 @@ public class Car extends Thread {
     public ArrayList<Listener> listeners = new ArrayList<>();
 
     private final double stopTreshold = 5;
-    private final double speedCalcConstant = 200;
+    private final double speedCalcConstant = 400;
 
     private boolean isRunning = false;
     public Car(String model, String registrationNumber, double weight, double speed) {
@@ -84,7 +84,7 @@ public class Car extends Thread {
     }
 
     double calculateSpeed(){
-        if(!clutch.isUp())
+        if(!clutch.isUp() || !isRunning)
             return 0;
 
         double foo =engine.getRpm() * gearbox.getGear() / speedCalcConstant;

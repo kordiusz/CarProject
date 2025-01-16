@@ -96,6 +96,7 @@
                         <HBox spacing="5">
                             <Button text="Naciśnij" fx:id="clutch_down"/>
                             <Button text="Zwolnij" fx:id="clutch_up" />
+                            <Label fx:id="clutch_status_label"/>
                         </HBox>
                     </VBox>
                 </TitledPane>

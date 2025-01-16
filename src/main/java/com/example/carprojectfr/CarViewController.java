@@ -61,6 +61,7 @@ public class CarViewController implements Listener
     public Button turn_on_btn;
     public Button turn_off_btn;
     public Label power_indicator_label;
+    public Label clutch_status_label;
 
     @FXML
     public void initialize(){
@@ -106,9 +107,11 @@ public class CarViewController implements Listener
 
         clutch_up.setOnAction(event->{
             getSelectedCar().clutchUp();
+            refresh();
         });
         clutch_down.setOnAction(event->{
             getSelectedCar().clutchDown();
+            refresh();
         });
 
         gear_up_btn.setOnAction(event->{
@@ -117,6 +120,7 @@ public class CarViewController implements Listener
             } catch (GearboxBrokenException e) {
                 handleError(e);
             }
+            refresh();
         });
 
         gear_down_btn.setOnAction(event->{
@@ -125,14 +129,17 @@ public class CarViewController implements Listener
             } catch (GearboxBrokenException e) {
                 handleError(e);
             }
+            refresh();
         });
 
         accelerate_btn.setOnAction(event->{
             getSelectedCar().accelerate();
+            refresh();
         });
 
         decelerate_btn.setOnAction(event->{
             getSelectedCar().decelerate();
+            refresh();
         });
 
         turn_on_btn.setOnAction(event->{
@@ -149,10 +156,10 @@ public class CarViewController implements Listener
 
     Car getSelectedCar(){return (Car)carComboBox.getValue();}
 
-    public void refresh(){
+    public void refresh() {
 
-        Car c = (Car)carComboBox.getValue();
-        if(c == null) {
+        Car c = (Car) carComboBox.getValue();
+        if (c == null) {
             restore_empty();
             return;
         }
@@ -171,7 +178,7 @@ public class CarViewController implements Listener
         Engine e = c.getEngine();
         engineNameField.setText(e.getName());
         enginePriceField.setText(String.valueOf(e.getPrice()));
-        engineRpmField.setText(String.valueOf( e.getRpm()));
+        engineRpmField.setText(String.valueOf(e.getRpm()));
         engineWeightField.setText(String.valueOf(e.getWeight()));
 
         Clutch clutch = c.getClutch();
@@ -182,7 +189,7 @@ public class CarViewController implements Listener
 
         Platform.runLater(() -> {
 
-            for(Car car : cars){
+            for (Car car : cars) {
                 VBox icon = carIcons.get(car);
                 icon.setTranslateX(car.getX());
                 icon.setTranslateY(car.getY());
@@ -190,12 +197,17 @@ public class CarViewController implements Listener
 
         });
 
-        if(getSelectedCar().isRunning())
+        if (getSelectedCar().isRunning())
             power_indicator_label.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
         else
             power_indicator_label.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
 
+        if (clutch.isUp())
+            clutch_status_label.setText("Na biegu");
+        else
+            clutch_status_label.setText("Na luzie");
     }
+
 
     private void restore_empty(){
         modelField.setText("");
@@ -217,6 +229,9 @@ public class CarViewController implements Listener
         clutchConditionField.setText("");
         clutchPriceField.setText("");
         clutchWeightField.setText("");
+
+        power_indicator_label.setStyle("-fx-text-fill: black; -fx-font-size: 16px;");
+        clutch_status_label.setText("Na luzie");
     }
 
     public void addCar(Car c){
