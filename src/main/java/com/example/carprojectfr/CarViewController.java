@@ -18,6 +18,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -175,8 +177,9 @@ public class CarViewController implements Listener
 
 
         VBox car_box = new VBox();
+        car_box.setAlignment(Pos.CENTER);
         Label label = new Label(c.getModel());
-        label.setStyle("-fx-font-size: 10;");
+        label.setStyle("-fx-font-size: 12;");
         Image image = new Image(getClass().getResource("/car_new.png").toExternalForm());
         ImageView img = new ImageView(image);
 

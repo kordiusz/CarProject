@@ -1,5 +1,6 @@
 package com.example.carprojectfr.models;
 
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.geometry.Point2D;
@@ -100,9 +101,9 @@ public class Car extends Thread {
                 double dy = getPredkosc() * deltat * (destination.getY() - position.getY()) /
                         odleglosc;
                 position = position.add(new Point2D(dx,dy));
-                notifyListeners();
-                System.out.println(position);
-                System.out.println(destination);
+                Platform.runLater(()->{
+                    notifyListeners();
+                });
             }
             try {
                 Thread.sleep(100);
