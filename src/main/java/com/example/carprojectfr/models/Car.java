@@ -103,6 +103,7 @@ public class Car extends Thread {
 
     public void driveTo(Point2D destination) {
         this.destination = destination;
+        start();
     }
 
 

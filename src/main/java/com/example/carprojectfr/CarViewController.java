@@ -64,8 +64,9 @@ public class CarViewController implements Listener
         example.setClutch(PredefinedComponents.getInstance().getClutches().getFirst());
         example.setEngine(PredefinedComponents.getInstance().getEngines().getFirst());
         example.setGearbox(PredefinedComponents.getInstance().getGearboxes().getFirst());
-        cars.add(example);
-        addCarIcon(example);
+        addCar(example);
+
+
         carComboBox.setItems(cars);
 
         carComboBox.setOnAction(event->{
@@ -84,10 +85,12 @@ public class CarViewController implements Listener
         });
 
         car_playground.setOnMouseClicked(event->{
+            Car selected = (Car) carComboBox.getValue();
+            if(selected == null)
+                return;
             double x = event.getX();
             double y = event.getY();
 
-            Car selected = (Car) carComboBox.getValue();
             selected.driveTo(new Point2D(x,y));
         });
     }
@@ -159,9 +162,13 @@ public class CarViewController implements Listener
     public void addCar(Car c){
         cars.add(c);
         c.addListener(this);
+
+        VBox newCarIcon = makeCarIcon(c);
+        car_playground.getChildren().add(newCarIcon);
+        carIcons.put(c,newCarIcon);
     }
 
-    void addCarIcon(Car c){
+    VBox makeCarIcon(Car c){
 
 
         VBox car_box = new VBox();
@@ -173,10 +180,8 @@ public class CarViewController implements Listener
         img.setScaleX(0.1);
         img.setScaleY(0.1);
         car_box.getChildren().addAll(label, img);
-        car_playground.getChildren().add(car_box);
+        return  car_box;
 
-        car_box.setTranslateX(100);
-        car_box.setTranslateY(100);
 
     }
 
