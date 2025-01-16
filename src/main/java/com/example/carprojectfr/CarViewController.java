@@ -93,6 +93,7 @@ public class CarViewController implements Listener
             double y = event.getY();
 
             selected.driveTo(new Point2D(x,y));
+
         });
     }
 

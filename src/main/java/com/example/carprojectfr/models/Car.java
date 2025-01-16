@@ -24,6 +24,8 @@ public class Car extends Thread {
 
     public ArrayList<Listener> listeners = new ArrayList<>();
 
+    private final double stopTreshold = 5;
+
     public Car(String model, String registrationNumber, double weight, double speed) {
         this.model = model;
         this.registrationNumber = registrationNumber;
@@ -89,12 +91,18 @@ public class Car extends Thread {
             if (destination != null) {
                 double odleglosc = Math.sqrt(Math.pow(destination.getX() - position.getX(), 2) +
                         Math.pow(destination.getY() - position.getY(), 2));
+                if(odleglosc <= stopTreshold){
+                    destination = null;
+                    continue;
+                }
                 double dx = getPredkosc() * deltat * (destination.getX() - position.getX()) /
                         odleglosc;
-                double dy = getPredkosc() * deltat * (destination.getX() - position.getY()) /
+                double dy = getPredkosc() * deltat * (destination.getY() - position.getY()) /
                         odleglosc;
                 position = position.add(new Point2D(dx,dy));
                 notifyListeners();
+                System.out.println(position);
+                System.out.println(destination);
             }
             try {
                 Thread.sleep(100);
