@@ -166,6 +166,7 @@ public class CarViewController implements Listener
         VBox newCarIcon = makeCarIcon(c);
         car_playground.getChildren().add(newCarIcon);
         carIcons.put(c,newCarIcon);
+        c.start();
     }
 
     VBox makeCarIcon(Car c){

@@ -82,6 +82,7 @@ public class Car extends Thread {
         return 5;
     }
 
+    @Override
     public void run(){
         double deltat = 0.1;
         while (true) {
@@ -92,9 +93,11 @@ public class Car extends Thread {
                         odleglosc;
                 double dy = getPredkosc() * deltat * (destination.getX() - position.getY()) /
                         odleglosc;
+                position = position.add(new Point2D(dx,dy));
+                notifyListeners();
             }
             try {
-                wait(100);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -103,7 +106,6 @@ public class Car extends Thread {
 
     public void driveTo(Point2D destination) {
         this.destination = destination;
-        start();
     }
 
 
