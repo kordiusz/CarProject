@@ -60,8 +60,8 @@
                         <Label text="Bieg" />
                         <TextField fx:id="gearboxGearField" />
                         <HBox spacing="5">
-                            <Button text="Zwiększ bieg" />
-                            <Button text="Zmniejsz bieg" />
+                            <Button text="Zwiększ bieg" fx:id="gear_up_btn"/>
+                            <Button text="Zmniejsz bieg" fx:id="gear_down_btn"/>
                         </HBox>
                     </VBox>
                 </TitledPane>
@@ -94,8 +94,8 @@
                         <Label text="Stan" />
                         <TextField fx:id="clutchConditionField" />
                         <HBox spacing="5">
-                            <Button text="Naciśnij" />
-                            <Button text="Zwolnij" />
+                            <Button text="Naciśnij" fx:id="clutch_down"/>
+                            <Button text="Zwolnij" fx:id="clutch_up" />
                         </HBox>
                     </VBox>
                 </TitledPane>

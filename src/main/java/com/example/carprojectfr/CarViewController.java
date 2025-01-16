@@ -15,16 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class CarViewController implements Listener
@@ -57,6 +52,10 @@ public class CarViewController implements Listener
     public Button add_car_btn;
     public Button remove_car_btn;
     public Pane car_playground;
+    public Button clutch_down;
+    public Button clutch_up;
+    public Button gear_up_btn;
+    public Button gear_down_btn;
 
     @FXML
     public void initialize(){
@@ -88,16 +87,43 @@ public class CarViewController implements Listener
         });
 
         car_playground.setOnMouseClicked(event->{
-            Car selected = (Car) carComboBox.getValue();
-            if(selected == null)
+
+            if(getSelectedCar() == null)
                 return;
             double x = event.getX();
             double y = event.getY();
 
-            selected.driveTo(new Point2D(x,y));
+            getSelectedCar().driveTo(new Point2D(x,y));
 
         });
+
+        //Now the buttons of each component:
+
+        clutch_up.setOnAction(event->{
+            getSelectedCar().clutchUp();
+        });
+        clutch_down.setOnAction(event->{
+            getSelectedCar().clutchDown();
+        });
+
+        gear_up_btn.setOnAction(event->{
+            try {
+                getSelectedCar().gearUp();
+            } catch (GearboxBrokenException e) {
+                handleError(e);
+            }
+        });
+
+        gear_down_btn.setOnAction(event->{
+            try {
+                getSelectedCar().gearDown();
+            } catch (GearboxBrokenException e) {
+                handleError(e);
+            }
+        });
     }
+
+    Car getSelectedCar(){return (Car)carComboBox.getValue();}
 
     public void refresh(){
 
@@ -201,8 +227,12 @@ public class CarViewController implements Listener
 
     }
 
+    public void handleError(Throwable e){
+
+    }
+
     @Override
     public void update() {
-        refresh();
+        Platform.runLater(this::refresh);
     }
 }

@@ -6,6 +6,8 @@ public class Clutch {
     private double weight;
     private String condition;
 
+    private boolean isUp = false;
+
     public Clutch(String name, double price, double weight, String condition) {
         this.name = name;
         this.price = price;
@@ -44,6 +46,12 @@ public class Clutch {
     public void setCondition(String condition) {
         this.condition = condition;
     }
+
+    public void setIsUp(boolean isup){
+        this.isUp = isup;
+    }
+
+    public boolean isUp(){return isUp;}
 
     @Override
     public String toString() {

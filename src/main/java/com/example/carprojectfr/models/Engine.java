@@ -6,6 +6,8 @@ public class Engine {
     private double weight;
     private int rpm;
 
+    private final double accelerateConstant = 100;
+
     public Engine(String name, double price, double weight, int rpm) {
         this.name = name;
         this.price = price;
@@ -48,5 +50,13 @@ public class Engine {
     @Override
     public String toString() {
         return name;
+    }
+
+    public void accelerate(){
+        rpm += accelerateConstant;
+    }
+
+    public void deaccelerate(){
+        rpm -= accelerateConstant;
     }
 }

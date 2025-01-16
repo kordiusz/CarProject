@@ -49,5 +49,8 @@ public class Gearbox {
     public String toString() {
         return name;
     }
+
+    public void up(){this.gear++;}
+    public void down(){this.gear--;}
 }
 

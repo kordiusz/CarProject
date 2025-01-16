@@ -26,7 +26,7 @@ public class Car extends Thread {
     public ArrayList<Listener> listeners = new ArrayList<>();
 
     private final double stopTreshold = 5;
-
+    private final double speedCalcConstant = 100;
     public Car(String model, String registrationNumber, double weight, double speed) {
         this.model = model;
         this.registrationNumber = registrationNumber;
@@ -81,9 +81,33 @@ public class Car extends Thread {
         return model;
     }
 
-    public double getPredkosc(){
-        return 15;
+    double calculateSpeed(){
+
+        if(!clutch.isUp())
+            return 0;
+
+        double foo =engine.getRpm() * gearbox.getGear() / speedCalcConstant;
+        return foo;
     }
+
+    public void gearUp() throws GearboxBrokenException {
+        if(clutch.isUp()){
+            throw new GearboxBrokenException();
+        }
+        gearbox.up();
+        notifyListeners();
+    }
+
+    public void gearDown() throws GearboxBrokenException {
+        if(clutch.isUp()){
+            throw new GearboxBrokenException();
+        }
+        gearbox.down();
+        notifyListeners();
+    }
+
+    public void clutchUp(){clutch.setIsUp(true);}
+    public void clutchDown(){clutch.setIsUp(false);}
 
     @Override
     public void run(){
@@ -96,14 +120,13 @@ public class Car extends Thread {
                     destination = null;
                     continue;
                 }
-                double dx = getPredkosc() * deltat * (destination.getX() - position.getX()) /
+                double dx = calculateSpeed() * deltat * (destination.getX() - position.getX()) /
                         odleglosc;
-                double dy = getPredkosc() * deltat * (destination.getY() - position.getY()) /
+                double dy = calculateSpeed() * deltat * (destination.getY() - position.getY()) /
                         odleglosc;
                 position = position.add(new Point2D(dx,dy));
-                Platform.runLater(()->{
-                    notifyListeners();
-                });
+                notifyListeners();
+
             }
             try {
                 Thread.sleep(100);
