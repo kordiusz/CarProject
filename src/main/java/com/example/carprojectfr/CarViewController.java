@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CarViewController
+public class CarViewController implements Listener
 {
 
 
@@ -177,4 +177,8 @@ public class CarViewController
 
     }
 
+    @Override
+    public void update() {
+        refresh();
+    }
 }
