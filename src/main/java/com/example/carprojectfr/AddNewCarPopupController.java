@@ -20,6 +20,10 @@ public class AddNewCarPopupController {
     public TextField max_speed_field;
     public ComboBox clutch_listview;
 
+    private CarViewController mainController;
+    public AddNewCarPopupController(CarViewController mainController){
+        this.mainController = mainController;
+    }
 
     @FXML
     public void initialize(){
@@ -52,7 +56,7 @@ public class AddNewCarPopupController {
             newModel.setEngine(engine);
             newModel.setGearbox(gearbox);
             newModel.setClutch(clutch);
-            CarViewController.addCar(newModel);
+            mainController.addCar(newModel);
 
             Stage stage = (Stage)cancel_btn.getScene().getWindow();
             stage.close();

@@ -126,10 +126,11 @@ public class CarViewController implements Listener
         Platform.runLater(() -> {
 
             for(Car car : cars){
-
+                VBox icon = carIcons.get(car);
+                icon.setTranslateX(car.getX());
+                icon.setTranslateY(car.getY());
             }
-            carIcon.setTranslateX(samochod.getPozycja().getX());
-            carIcon.setTranslateY(samochod.getPozycja().getY());
+
         });
     }
 
@@ -155,8 +156,9 @@ public class CarViewController implements Listener
         clutchWeightField.setText("");
     }
 
-    public static void addCar(Car c){
+    public void addCar(Car c){
         cars.add(c);
+        c.addListener(this);
     }
 
     void addCarIcon(Car c){
@@ -182,6 +184,8 @@ public class CarViewController implements Listener
         FXMLLoader loader = new
                 FXMLLoader(getClass().getResource("AddNewCarPopup.fxml"));
         Stage stage = new Stage();
+        AddNewCarPopupController controller = new AddNewCarPopupController(this);
+        loader.setController(controller);
         stage.setScene(new Scene(loader.load()));
         stage.setTitle("Dodaj nowy samochód");
         stage.show();

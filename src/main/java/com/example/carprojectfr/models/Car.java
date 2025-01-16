@@ -20,7 +20,7 @@ public class Car extends Thread {
     private Clutch clutch;
 
     private Point2D destination;
-    private Point2D position;
+    private Point2D position = new Point2D(0,0);
 
     public ArrayList<Listener> listeners = new ArrayList<>();
 
@@ -69,6 +69,9 @@ public class Car extends Thread {
     public void setClutch(Clutch clutch) {
         this.clutch = clutch;
     }
+
+    public double getX(){return position.getX();}
+    public double getY(){return position.getY();}
 
     @Override
     public String toString() {

@@ -8,7 +8,7 @@
 
 <VBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.carprojectfr.AddNewCarPopupController"
+
             prefHeight="450" prefWidth="400" spacing="5">
 
     <Label text="Dodaj nowy samochod" style="-fx-font-size: 30"/>
