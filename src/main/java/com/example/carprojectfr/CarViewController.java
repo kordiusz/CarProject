@@ -112,11 +112,11 @@ public class CarViewController implements Listener
 
         clutch_up.setOnAction(event->{
             getSelectedCar().clutchUp();
-            refresh();
+
         });
         clutch_down.setOnAction(event->{
             getSelectedCar().clutchDown();
-            refresh();
+
         });
 
         gear_up_btn.setOnAction(event->{
@@ -125,7 +125,6 @@ public class CarViewController implements Listener
             } catch (GearboxBrokenException e) {
                 handleError(e);
             }
-            refresh();
         });
 
         gear_down_btn.setOnAction(event->{
@@ -134,26 +133,21 @@ public class CarViewController implements Listener
             } catch (GearboxBrokenException e) {
                 handleError(e);
             }
-            refresh();
         });
 
         accelerate_btn.setOnAction(event->{
             getSelectedCar().accelerate();
-            refresh();
         });
 
         decelerate_btn.setOnAction(event->{
             getSelectedCar().decelerate();
-            refresh();
         });
 
         turn_on_btn.setOnAction(event->{
             getSelectedCar().turnOn();
-            refresh();
         });
         turn_off_btn.setOnAction(event->{
             getSelectedCar().turnOff();
-            refresh();
         });
 
 

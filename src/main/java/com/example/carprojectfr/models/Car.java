@@ -104,8 +104,8 @@ public class Car extends Thread {
         notifyListeners();
     }
 
-    public void clutchUp(){clutch.setIsUp(true);}
-    public void clutchDown(){clutch.setIsUp(false);}
+    public void clutchUp(){clutch.setIsUp(true); notifyListeners();}
+    public void clutchDown(){clutch.setIsUp(false); notifyListeners();}
 
     @Override
     public void run(){
@@ -138,8 +138,9 @@ public class Car extends Thread {
         this.destination = destination;
     }
 
-    public void accelerate(){engine.accelerate();}
-    public void decelerate(){engine.deaccelerate();}
+    public void accelerate(){engine.accelerate(); notifyListeners();}
+    public void decelerate(){engine.deaccelerate(); notifyListeners();}
+
     public void addListener(Listener l) {
         listeners.add(l);
     }
@@ -171,10 +172,12 @@ public class Car extends Thread {
 
     public void turnOn() {
         isRunning = true;
+        notifyListeners();
     }
 
     public void turnOff() {
         isRunning = false;
+        notifyListeners();
     }
 
     public boolean isRunning(){return isRunning;}
