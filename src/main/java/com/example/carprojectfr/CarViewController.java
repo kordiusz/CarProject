@@ -1,6 +1,7 @@
 package com.example.carprojectfr;
 
 import com.example.carprojectfr.models.*;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +21,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class CarViewController implements Listener
 {
@@ -46,6 +49,7 @@ public class CarViewController implements Listener
     public TextField clutchConditionField;
 
     private static ObservableList<Car> cars = FXCollections.observableArrayList();
+    private static Hashtable<Car, VBox> carIcons = new Hashtable<>();
     public ComboBox carComboBox;
     public Button add_car_btn;
     public Button remove_car_btn;
@@ -119,7 +123,14 @@ public class CarViewController implements Listener
         clutchPriceField.setText(String.valueOf(clutch.getPrice()));
         clutchWeightField.setText(String.valueOf(clutch.getWeight()));
 
+        Platform.runLater(() -> {
 
+            for(Car car : cars){
+
+            }
+            carIcon.setTranslateX(samochod.getPozycja().getX());
+            carIcon.setTranslateY(samochod.getPozycja().getY());
+        });
     }
 
     private void restore_empty(){

@@ -6,6 +6,7 @@ import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Car extends Thread {
@@ -115,6 +116,20 @@ public class Car extends Thread {
         for(Listener l : listeners){
             l.update();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(model);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        Car other = (Car) obj;
+        return Objects.equals(model, other.model);
     }
 }
 
