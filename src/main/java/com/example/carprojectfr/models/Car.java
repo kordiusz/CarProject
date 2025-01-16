@@ -1,12 +1,8 @@
 package com.example.carprojectfr.models;
 
-import javafx.application.Platform;
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
 import javafx.geometry.Point2D;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 
@@ -84,7 +80,7 @@ public class Car extends Thread {
     }
 
     double calculateSpeed(){
-        if(!clutch.isUp() || !isRunning)
+        if(!clutch.isUp() || !isRunning || gearbox.isBroken())
             return 0;
 
         double foo =engine.getRpm() * gearbox.getGear() / speedCalcConstant;
@@ -101,6 +97,7 @@ public class Car extends Thread {
 
     public void gearDown() throws GearboxBrokenException {
         if(clutch.isUp()){
+            gearbox.setIsBroken(true);
             throw new GearboxBrokenException();
         }
         gearbox.down();

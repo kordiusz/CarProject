@@ -6,6 +6,7 @@ public class Gearbox {
     private double weight;
     private int gear;
 
+    private boolean isBroken;
     public Gearbox(String name, double price, double weight, int gear) {
         this.name = name;
         this.price = price;
@@ -49,6 +50,9 @@ public class Gearbox {
     public String toString() {
         return name;
     }
+
+    public void setIsBroken(boolean val){isBroken = val;}
+    public boolean isBroken(){return isBroken;}
 
     public void up(){this.gear++;}
     public void down(){this.gear--;}

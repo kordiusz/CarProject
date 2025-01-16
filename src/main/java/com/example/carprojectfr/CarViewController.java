@@ -62,6 +62,7 @@ public class CarViewController implements Listener
     public Button turn_off_btn;
     public Label power_indicator_label;
     public Label clutch_status_label;
+    public Label error_label;
 
     @FXML
     public void initialize(){
@@ -79,6 +80,7 @@ public class CarViewController implements Listener
 
         carComboBox.setOnAction(event->{
             refresh();
+            error_label.setText("");
         });
         add_car_btn.setOnAction(event->{
             try {
@@ -89,7 +91,10 @@ public class CarViewController implements Listener
         });
 
         remove_car_btn.setOnAction(event->{
-            carComboBox.getItems().remove((Car)carComboBox.getValue());
+            car_playground.getChildren().remove(carIcons.get(getSelectedCar()));
+            carIcons.remove(getSelectedCar());
+            carComboBox.getItems().remove(getSelectedCar());
+            refresh();
         });
 
         car_playground.setOnMouseClicked(event->{
@@ -206,6 +211,8 @@ public class CarViewController implements Listener
             clutch_status_label.setText("Na biegu");
         else
             clutch_status_label.setText("Na luzie");
+
+
     }
 
 
@@ -232,6 +239,7 @@ public class CarViewController implements Listener
 
         power_indicator_label.setStyle("-fx-text-fill: black; -fx-font-size: 16px;");
         clutch_status_label.setText("Na luzie");
+        error_label.setText("");
     }
 
     public void addCar(Car c){
@@ -273,6 +281,7 @@ public class CarViewController implements Listener
     }
 
     public void handleError(Throwable e){
+        error_label.setText(e.getMessage());
 
     }
 
