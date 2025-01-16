@@ -26,7 +26,9 @@ public class Car extends Thread {
     public ArrayList<Listener> listeners = new ArrayList<>();
 
     private final double stopTreshold = 5;
-    private final double speedCalcConstant = 100;
+    private final double speedCalcConstant = 200;
+
+    private boolean isRunning = false;
     public Car(String model, String registrationNumber, double weight, double speed) {
         this.model = model;
         this.registrationNumber = registrationNumber;
@@ -82,7 +84,6 @@ public class Car extends Thread {
     }
 
     double calculateSpeed(){
-
         if(!clutch.isUp())
             return 0;
 
@@ -140,7 +141,8 @@ public class Car extends Thread {
         this.destination = destination;
     }
 
-
+    public void accelerate(){engine.accelerate();}
+    public void decelerate(){engine.deaccelerate();}
     public void addListener(Listener l) {
         listeners.add(l);
     }
@@ -169,6 +171,16 @@ public class Car extends Thread {
         Car other = (Car) obj;
         return Objects.equals(model, other.model);
     }
+
+    public void turnOn() {
+        isRunning = true;
+    }
+
+    public void turnOff() {
+        isRunning = false;
+    }
+
+    public boolean isRunning(){return isRunning;}
 }
 
 

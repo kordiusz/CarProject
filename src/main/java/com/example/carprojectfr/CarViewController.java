@@ -56,6 +56,11 @@ public class CarViewController implements Listener
     public Button clutch_up;
     public Button gear_up_btn;
     public Button gear_down_btn;
+    public Button accelerate_btn;
+    public Button decelerate_btn;
+    public Button turn_on_btn;
+    public Button turn_off_btn;
+    public Label power_indicator_label;
 
     @FXML
     public void initialize(){
@@ -121,6 +126,25 @@ public class CarViewController implements Listener
                 handleError(e);
             }
         });
+
+        accelerate_btn.setOnAction(event->{
+            getSelectedCar().accelerate();
+        });
+
+        decelerate_btn.setOnAction(event->{
+            getSelectedCar().decelerate();
+        });
+
+        turn_on_btn.setOnAction(event->{
+            getSelectedCar().turnOn();
+            refresh();
+        });
+        turn_off_btn.setOnAction(event->{
+            getSelectedCar().turnOff();
+            refresh();
+        });
+
+
     }
 
     Car getSelectedCar(){return (Car)carComboBox.getValue();}
@@ -165,6 +189,12 @@ public class CarViewController implements Listener
             }
 
         });
+
+        if(getSelectedCar().isRunning())
+            power_indicator_label.setStyle("-fx-text-fill: green; -fx-font-size: 16px;");
+        else
+            power_indicator_label.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+
     }
 
     private void restore_empty(){

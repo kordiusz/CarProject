@@ -6,7 +6,7 @@ public class Engine {
     private double weight;
     private int rpm;
 
-    private final double accelerateConstant = 100;
+    private final double accelerateConstant = 500;
 
     public Engine(String name, double price, double weight, int rpm) {
         this.name = name;

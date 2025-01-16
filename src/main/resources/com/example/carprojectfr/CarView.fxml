@@ -42,9 +42,9 @@
                         <Label text="Prędkość" />
                         <TextField fx:id="speedField" />
                         <HBox spacing="5">
-                            <Button text="Włącz" />
-                            <Button text="Wyłącz" />
-                            <Button text="Button" />
+                            <Button text="Włącz" fx:id="turn_on_btn"/>
+                            <Button text="Wyłącz" fx:id="turn_off_btn"/>
+                            <Label text="#" fx:id="power_indicator_label"/>
                         </HBox>
                     </VBox>
                 </TitledPane>
@@ -77,8 +77,8 @@
                         <Label text="Obroty" />
                         <TextField fx:id="engineRpmField" />
                         <HBox spacing="5">
-                            <Button text="Dodaj gazu" />
-                            <Button text="Ujmij gazu" />
+                            <Button text="Dodaj gazu" fx:id="accelerate_btn"/>
+                            <Button text="Ujmij gazu" fx:id="decelerate_btn"/>
                         </HBox>
                     </VBox>
                 </TitledPane>
