@@ -79,7 +79,7 @@ public class Car extends Thread {
     }
 
     public double getPredkosc(){
-        return 5;
+        return 15;
     }
 
     @Override

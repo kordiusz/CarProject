@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -53,7 +54,7 @@ public class CarViewController implements Listener
     public ComboBox carComboBox;
     public Button add_car_btn;
     public Button remove_car_btn;
-    public BorderPane car_playground;
+    public Pane car_playground;
 
     @FXML
     public void initialize(){
@@ -173,13 +174,11 @@ public class CarViewController implements Listener
 
 
         VBox car_box = new VBox();
-        car_box.setAlignment(Pos.CENTER);
         Label label = new Label(c.getModel());
-        label.setStyle("-fx-font-size: 100;");
-        Image image = new Image(getClass().getResource("/car.png").toExternalForm());
+        label.setStyle("-fx-font-size: 10;");
+        Image image = new Image(getClass().getResource("/car_new.png").toExternalForm());
         ImageView img = new ImageView(image);
-        img.setScaleX(0.1);
-        img.setScaleY(0.1);
+
         car_box.getChildren().addAll(label, img);
         return  car_box;
 
